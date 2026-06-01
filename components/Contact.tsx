@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -72,7 +72,7 @@ export default function Contact() {
             Let&apos;s Build Something{" "}
             <span className="gradient-text">Great Together</span>
           </h2>
-          <p className="text-[#8899AA] text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#9CA3AF] text-lg max-w-2xl mx-auto leading-relaxed">
             Have a project in mind? Fill in the details below and I&apos;ll get back to you
             within 24 hours.
           </p>
@@ -88,7 +88,7 @@ export default function Contact() {
             className="lg:col-span-2 flex flex-col gap-4 justify-center"
           >
             <h3 className="text-white font-semibold text-xl mb-2">Reach out directly</h3>
-            <p className="text-[#8899AA] text-sm leading-relaxed mb-4">
+            <p className="text-[#9CA3AF] text-sm leading-relaxed mb-4">
               Prefer a direct conversation? You can reach me through any of these channels.
               I&apos;m usually responsive within a few hours.
             </p>
@@ -99,14 +99,14 @@ export default function Contact() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 bg-[#0D1526] border border-[#1A2A40] rounded-xl hover:border-[#0057FF]/40 transition-all duration-200 group"
+                className="flex items-center gap-4 p-4 bg-[#0F0A1D] border border-[#1E1535] rounded-xl hover:border-[#7C3AED]/40 transition-all duration-200 group"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#0057FF]/15 flex items-center justify-center shrink-0">
-                  <link.icon size={18} className="text-[#0057FF]" />
+                <div className="w-10 h-10 rounded-lg bg-[#7C3AED]/15 flex items-center justify-center shrink-0">
+                  <link.icon size={18} className="text-[#7C3AED]" />
                 </div>
                 <div>
-                  <p className="text-[#8899AA] text-xs">{link.label}</p>
-                  <p className="text-white text-sm font-medium group-hover:text-[#00B4FF] transition-colors">
+                  <p className="text-[#9CA3AF] text-xs">{link.label}</p>
+                  <p className="text-white text-sm font-medium group-hover:text-[#EC4899] transition-colors">
                     {link.value}
                   </p>
                 </div>
@@ -124,11 +124,11 @@ export default function Contact() {
           >
             <form
               onSubmit={handleSubmit}
-              className="bg-[#0D1526] border border-[#1A2A40] rounded-2xl p-8 flex flex-col gap-5"
+              className="bg-[#0F0A1D] border border-[#1E1535] rounded-2xl p-8 flex flex-col gap-5"
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[#8899AA] text-xs uppercase tracking-widest">
+                  <label className="text-[#9CA3AF] text-xs uppercase tracking-widest">
                     Your Name
                   </label>
                   <input
@@ -137,11 +137,11 @@ export default function Contact() {
                     placeholder="John Doe"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="bg-[#060B18] border border-[#1A2A40] rounded-lg px-4 py-3 text-white text-sm placeholder:text-[#8899AA]/50 focus:outline-none focus:border-[#0057FF]/60 transition-colors"
+                    className="bg-[#07050F] border border-[#1E1535] rounded-lg px-4 py-3 text-white text-sm placeholder:text-[#9CA3AF]/50 focus:outline-none focus:border-[#7C3AED]/60 transition-colors"
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[#8899AA] text-xs uppercase tracking-widest">
+                  <label className="text-[#9CA3AF] text-xs uppercase tracking-widest">
                     Email Address
                   </label>
                   <input
@@ -150,19 +150,19 @@ export default function Contact() {
                     placeholder="you@example.com"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="bg-[#060B18] border border-[#1A2A40] rounded-lg px-4 py-3 text-white text-sm placeholder:text-[#8899AA]/50 focus:outline-none focus:border-[#0057FF]/60 transition-colors"
+                    className="bg-[#07050F] border border-[#1E1535] rounded-lg px-4 py-3 text-white text-sm placeholder:text-[#9CA3AF]/50 focus:outline-none focus:border-[#7C3AED]/60 transition-colors"
                   />
                 </div>
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[#8899AA] text-xs uppercase tracking-widest">
+                <label className="text-[#9CA3AF] text-xs uppercase tracking-widest">
                   Project Type
                 </label>
                 <select
                   value={form.project}
                   onChange={(e) => setForm({ ...form, project: e.target.value })}
-                  className="bg-[#060B18] border border-[#1A2A40] rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#0057FF]/60 transition-colors appearance-none"
+                  className="bg-[#07050F] border border-[#1E1535] rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#7C3AED]/60 transition-colors appearance-none"
                 >
                   <option value="">Select a service...</option>
                   {projectTypes.map((p) => (
@@ -174,7 +174,7 @@ export default function Contact() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[#8899AA] text-xs uppercase tracking-widest">
+                <label className="text-[#9CA3AF] text-xs uppercase tracking-widest">
                   Tell Me About Your Project
                 </label>
                 <textarea
@@ -183,13 +183,13 @@ export default function Contact() {
                   placeholder="Briefly describe what you'd like to build, your timeline, and any other relevant details..."
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="bg-[#060B18] border border-[#1A2A40] rounded-lg px-4 py-3 text-white text-sm placeholder:text-[#8899AA]/50 focus:outline-none focus:border-[#0057FF]/60 transition-colors resize-none"
+                  className="bg-[#07050F] border border-[#1E1535] rounded-lg px-4 py-3 text-white text-sm placeholder:text-[#9CA3AF]/50 focus:outline-none focus:border-[#7C3AED]/60 transition-colors resize-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="flex items-center justify-center gap-2 bg-[#0057FF] hover:bg-[#0046CC] text-white px-6 py-4 rounded-xl font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-[#0057FF]/30 hover:scale-[1.02]"
+                className="flex items-center justify-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white px-6 py-4 rounded-xl font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-[#7C3AED]/30 hover:scale-[1.02]"
               >
                 {submitted ? (
                   <>
@@ -210,3 +210,4 @@ export default function Contact() {
     </section>
   );
 }
+

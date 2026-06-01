@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 
@@ -27,7 +27,7 @@ const techCategories = [
 
 export default function TechStack() {
   return (
-    <section id="tech-stack" className="py-28 px-6 bg-[#060B18]">
+    <section id="tech-stack" className="py-28 px-6 bg-[#07050F]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -42,7 +42,7 @@ export default function TechStack() {
             Built with the{" "}
             <span className="gradient-text">Right Tools</span>
           </h2>
-          <p className="text-[#8899AA] text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#9CA3AF] text-lg max-w-2xl mx-auto leading-relaxed">
             A modern, battle-tested stack chosen for performance, developer experience,
             and long-term maintainability.
           </p>
@@ -60,7 +60,7 @@ export default function TechStack() {
               className="flex flex-col sm:flex-row gap-4 items-start sm:items-center"
             >
               {/* Category label */}
-              <div className="shrink-0 w-32 text-[#8899AA] text-xs uppercase tracking-widest font-medium">
+              <div className="shrink-0 w-32 text-[#9CA3AF] text-xs uppercase tracking-widest font-medium">
                 {cat.label}
               </div>
 
@@ -73,8 +73,8 @@ export default function TechStack() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: catIdx * 0.08 + techIdx * 0.04 }}
-                    whileHover={{ scale: 1.05, borderColor: "#0057FF" }}
-                    className="px-4 py-2 bg-[#0D1526] border border-[#1A2A40] rounded-lg text-sm text-[#8899AA] hover:text-white transition-colors duration-200 cursor-default"
+                    whileHover={{ scale: 1.05, borderColor: "#7C3AED" }}
+                    className="px-4 py-2 bg-[#0F0A1D] border border-[#1E1535] rounded-lg text-sm text-[#9CA3AF] hover:text-white transition-colors duration-200 cursor-default"
                   >
                     {tech}
                   </motion.span>
@@ -90,10 +90,10 @@ export default function TechStack() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center text-[#8899AA] text-sm mt-12"
+          className="text-center text-[#9CA3AF] text-sm mt-12"
         >
           Don&apos;t see your tech? I adapt to your existing stack.{" "}
-          <a href="#contact" className="text-[#0057FF] hover:underline">
+          <a href="#contact" className="text-[#7C3AED] hover:underline">
             Let&apos;s talk.
           </a>
         </motion.p>
@@ -101,3 +101,4 @@ export default function TechStack() {
     </section>
   );
 }
+

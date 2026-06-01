@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { MessageSquare, PenTool, Terminal, Rocket } from "lucide-react";
@@ -55,7 +55,7 @@ export default function Process() {
             A Process Built for{" "}
             <span className="gradient-text">Clarity</span>
           </h2>
-          <p className="text-[#8899AA] text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#9CA3AF] text-lg max-w-2xl mx-auto leading-relaxed">
             No black boxes. No surprises. Just a transparent, collaborative process
             that takes your idea from concept to live product.
           </p>
@@ -64,7 +64,7 @@ export default function Process() {
         {/* Steps */}
         <div className="relative">
           {/* Connecting line (desktop) */}
-          <div className="hidden lg:block absolute top-16 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1A2A40] to-transparent" />
+          <div className="hidden lg:block absolute top-16 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1E1535] to-transparent" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, idx) => (
@@ -79,24 +79,24 @@ export default function Process() {
                 {/* Step number + icon */}
                 <div className="flex flex-col items-center lg:items-start mb-6">
                   <div className="relative mb-3">
-                    <div className="w-14 h-14 rounded-2xl bg-[#0D1526] border border-[#1A2A40] flex items-center justify-center z-10 relative">
-                      <step.icon size={22} className="text-[#0057FF]" />
+                    <div className="w-14 h-14 rounded-2xl bg-[#0F0A1D] border border-[#1E1535] flex items-center justify-center z-10 relative">
+                      <step.icon size={22} className="text-[#7C3AED]" />
                     </div>
                     {/* Connector dot (desktop) */}
-                    <div className="hidden lg:block absolute -right-[calc(50%+28px)] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#0057FF]" />
+                    <div className="hidden lg:block absolute -right-[calc(50%+28px)] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#7C3AED]" />
                   </div>
-                  <span className="text-[#8899AA] text-xs font-mono tracking-widest">{step.number}</span>
+                  <span className="text-[#9CA3AF] text-xs font-mono tracking-widest">{step.number}</span>
                 </div>
 
                 {/* Content */}
                 <div className="lg:text-left text-center">
                   <h3 className="text-white font-semibold text-lg mb-3">{step.title}</h3>
-                  <p className="text-[#8899AA] text-sm leading-relaxed mb-4">{step.description}</p>
+                  <p className="text-[#9CA3AF] text-sm leading-relaxed mb-4">{step.description}</p>
 
                   <ul className="space-y-1.5">
                     {step.details.map((d) => (
-                      <li key={d} className="flex items-center gap-2 text-sm text-[#8899AA] lg:justify-start justify-center">
-                        <span className="w-1 h-1 rounded-full bg-[#0057FF] shrink-0" />
+                      <li key={d} className="flex items-center gap-2 text-sm text-[#9CA3AF] lg:justify-start justify-center">
+                        <span className="w-1 h-1 rounded-full bg-[#7C3AED] shrink-0" />
                         {d}
                       </li>
                     ))}
@@ -110,3 +110,4 @@ export default function Process() {
     </section>
   );
 }
+

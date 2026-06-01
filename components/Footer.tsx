@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Image from "next/image";
 import { Github, Linkedin, Globe, Mail } from "lucide-react";
 
@@ -19,7 +19,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#060B18] border-t border-[#1A2A40] py-12 px-6">
+    <footer className="bg-[#07050F] border-t border-[#1E1535] py-12 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}
@@ -31,7 +31,7 @@ export default function Footer() {
               height={44}
               className="h-10 w-auto mb-4"
             />
-            <p className="text-[#8899AA] text-sm leading-relaxed max-w-xs">
+            <p className="text-[#9CA3AF] text-sm leading-relaxed max-w-xs">
               Custom software, web apps, mobile apps &amp; AI solutions — built to scale
               with your business.
             </p>
@@ -45,7 +45,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[#8899AA] hover:text-white text-sm transition-colors duration-200"
+                    className="text-[#9CA3AF] hover:text-white text-sm transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -60,7 +60,7 @@ export default function Footer() {
             <div className="flex flex-col gap-3 mb-5">
               <a
                 href="mailto:shivashah5152@gmail.com"
-                className="text-[#8899AA] hover:text-white text-sm transition-colors"
+                className="text-[#9CA3AF] hover:text-white text-sm transition-colors"
               >
                 shivashah5152@gmail.com
               </a>
@@ -68,7 +68,7 @@ export default function Footer() {
                 href="https://www.shivashah.in/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#8899AA] hover:text-white text-sm transition-colors"
+                className="text-[#9CA3AF] hover:text-white text-sm transition-colors"
               >
                 shivashah.in
               </a>
@@ -81,7 +81,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-lg bg-[#0D1526] border border-[#1A2A40] flex items-center justify-center text-[#8899AA] hover:text-white hover:border-[#0057FF]/50 transition-all duration-200"
+                  className="w-9 h-9 rounded-lg bg-[#0F0A1D] border border-[#1E1535] flex items-center justify-center text-[#9CA3AF] hover:text-white hover:border-[#7C3AED]/50 transition-all duration-200"
                 >
                   <s.icon size={16} />
                 </a>
@@ -91,17 +91,17 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#1A2A40] pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="text-[#8899AA] text-xs">
+        <div className="border-t border-[#1E1535] pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p className="text-[#9CA3AF] text-xs">
             © {new Date().getFullYear()} CodeShila Technologies. All rights reserved.
           </p>
-          <p className="text-[#8899AA] text-xs">
+          <p className="text-[#9CA3AF] text-xs">
             Built by{" "}
             <a
               href="https://www.shivashah.in/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#0057FF] hover:underline"
+              className="text-[#7C3AED] hover:underline"
             >
               Shiva Shah
             </a>{" "}
@@ -112,3 +112,4 @@ export default function Footer() {
     </footer>
   );
 }
+

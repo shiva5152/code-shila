@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { Globe, Smartphone, Layout, Briefcase, Code2, Sparkles, CheckCircle2 } from "lucide-react";
@@ -10,10 +10,10 @@ const services = [
     description:
       "Full-stack web applications built with modern frameworks — scalable, performant, and production-ready.",
     features: ["React / Next.js", "Node.js backends", "REST & GraphQL APIs", "Cloud deployment"],
-    iconBg: "bg-[#0057FF]/15",
-    iconColor: "text-[#0057FF]",
-    hoverBorder: "hover:border-[#0057FF]/40",
-    hoverGlow: "hover:shadow-[#0057FF]/10",
+    iconBg: "bg-[#7C3AED]/15",
+    iconColor: "text-[#7C3AED]",
+    hoverBorder: "hover:border-[#7C3AED]/40",
+    hoverGlow: "hover:shadow-[#7C3AED]/10",
   },
   {
     icon: Smartphone,
@@ -21,10 +21,10 @@ const services = [
     description:
       "Cross-platform mobile apps using React Native — one codebase, native performance on iOS & Android.",
     features: ["React Native", "iOS & Android", "Push notifications", "Offline support"],
-    iconBg: "bg-[#00B4FF]/15",
-    iconColor: "text-[#00B4FF]",
-    hoverBorder: "hover:border-[#00B4FF]/40",
-    hoverGlow: "hover:shadow-[#00B4FF]/10",
+    iconBg: "bg-[#EC4899]/15",
+    iconColor: "text-[#EC4899]",
+    hoverBorder: "hover:border-[#EC4899]/40",
+    hoverGlow: "hover:shadow-[#EC4899]/10",
   },
   {
     icon: Layout,
@@ -54,10 +54,10 @@ const services = [
     description:
       "Bespoke software solutions tailored to your exact requirements — from MVPs to enterprise systems.",
     features: ["Requirement analysis", "System architecture", "Agile development", "Ongoing support"],
-    iconBg: "bg-[#0057FF]/15",
-    iconColor: "text-[#0057FF]",
-    hoverBorder: "hover:border-[#0057FF]/40",
-    hoverGlow: "hover:shadow-[#0057FF]/10",
+    iconBg: "bg-[#7C3AED]/15",
+    iconColor: "text-[#7C3AED]",
+    hoverBorder: "hover:border-[#7C3AED]/40",
+    hoverGlow: "hover:shadow-[#7C3AED]/10",
   },
   {
     icon: Sparkles,
@@ -102,7 +102,7 @@ export default function Services() {
             Services Tailored to{" "}
             <span className="gradient-text">Your Vision</span>
           </h2>
-          <p className="text-[#8899AA] text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#9CA3AF] text-lg max-w-2xl mx-auto leading-relaxed">
             From idea to deployment — we cover every layer of the stack so you can focus on
             growing your business.
           </p>
@@ -138,14 +138,14 @@ export default function Services() {
               <h3 className="text-lg font-semibold text-white mb-3 leading-snug">
                 {service.title}
               </h3>
-              <p className="text-[#8899AA] text-sm leading-relaxed mb-5">
+              <p className="text-[#9CA3AF] text-sm leading-relaxed mb-5">
                 {service.description}
               </p>
 
               {/* Feature bullets */}
               <ul className="space-y-2">
                 {service.features.map((feat) => (
-                  <li key={feat} className="flex items-center gap-2 text-sm text-[#8899AA]">
+                  <li key={feat} className="flex items-center gap-2 text-sm text-[#9CA3AF]">
                     <CheckCircle2 size={14} className={service.iconColor} />
                     {feat}
                   </li>
@@ -158,3 +158,4 @@ export default function Services() {
     </section>
   );
 }
+
