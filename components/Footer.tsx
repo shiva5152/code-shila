@@ -25,10 +25,10 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Image
-              src="/code_shila_logo_full.png"
+              src="/code_shila_banner.png"
               alt="CodeShila Technologies"
-              width={150}
-              height={44}
+              width={180}
+              height={48}
               className="h-10 w-auto mb-4 mix-blend-screen"
             />
             <p className="text-[#9CA3AF] text-sm leading-relaxed max-w-xs">
