@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Mail, Github, Linkedin, Globe, Send, CheckCircle } from "lucide-react";
+import { Mail, Github, Linkedin, Globe, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
 const contactLinks = [
   {
@@ -42,18 +42,30 @@ const projectTypes = [
 ];
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
   const [form, setForm] = useState({ name: "", email: "", project: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`[CodeShila] New Project Inquiry — ${form.project || "General"}`);
-    const body = encodeURIComponent(
-      `Hi Shiva,\n\nName: ${form.name}\nEmail: ${form.email}\nProject Type: ${form.project}\n\nMessage:\n${form.message}`
-    );
-    window.open(`mailto:shivashah5152@gmail.com?subject=${subject}&body=${body}`);
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setStatus("loading");
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Something went wrong");
+      setStatus("success");
+      setForm({ name: "", email: "", project: "", message: "" });
+      setTimeout(() => setStatus("idle"), 6000);
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Failed to send. Please try again.");
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 6000);
+    }
   };
 
   return (
@@ -187,21 +199,30 @@ export default function Contact() {
                 />
               </div>
 
+              {/* Error message */}
+              {status === "error" && (
+                <div className="flex items-center gap-2 text-red-400 text-sm bg-red-400/10 border border-red-400/20 rounded-lg px-4 py-3">
+                  <AlertCircle size={16} className="shrink-0" />
+                  {errorMsg}
+                </div>
+              )}
+
+              {/* Success message */}
+              {status === "success" && (
+                <div className="flex items-center gap-2 text-emerald-400 text-sm bg-emerald-400/10 border border-emerald-400/20 rounded-lg px-4 py-3">
+                  <CheckCircle size={16} className="shrink-0" />
+                  Message sent! I&apos;ll get back to you within 24 hours.
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="flex items-center justify-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white px-6 py-4 rounded-xl font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-[#7C3AED]/30 hover:scale-[1.02]"
+                disabled={status === "loading" || status === "success"}
+                className="flex items-center justify-center gap-2 bg-[#7C3AED] hover:bg-[#6D28D9] disabled:opacity-60 disabled:cursor-not-allowed text-white px-6 py-4 rounded-xl font-semibold transition-all duration-200 hover:shadow-lg hover:shadow-[#7C3AED]/30 hover:scale-[1.02] disabled:hover:scale-100"
               >
-                {submitted ? (
-                  <>
-                    <CheckCircle size={18} />
-                    Opening your email client...
-                  </>
-                ) : (
-                  <>
-                    <Send size={18} />
-                    Send Message
-                  </>
-                )}
+                {status === "loading" && <><Loader2 size={18} className="animate-spin" />Sending...</>}
+                {status === "success" && <><CheckCircle size={18} />Message Sent!</>}
+                {(status === "idle" || status === "error") && <><Send size={18} />Send Message</>}
               </button>
             </form>
           </motion.div>
