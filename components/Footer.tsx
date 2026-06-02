@@ -12,7 +12,11 @@ const footerLinks = [
 
 const socialLinks = [
   { icon: Mail, href: "mailto:shivashah5152@gmail.com", label: "Email" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/shiva5152/", label: "LinkedIn" },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/shiva5152/",
+    label: "LinkedIn",
+  },
   { icon: Github, href: "https://github.com/shiva5152", label: "GitHub" },
   { icon: Globe, href: "https://www.shivashah.in/", label: "Website" },
 ];
@@ -25,15 +29,15 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Image
-              src="/code_shila_banner.png"
+              src="/code_shila_logo_full.png"
               alt="CodeShila Technologies"
               width={180}
               height={48}
               className="h-10 w-auto mb-4 mix-blend-screen"
             />
             <p className="text-[#9CA3AF] text-sm leading-relaxed max-w-xs">
-              Custom software, web apps, mobile apps &amp; AI solutions — built to scale
-              with your business.
+              Custom software, web apps, mobile apps &amp; AI solutions — built
+              to scale with your business.
             </p>
           </div>
 
@@ -93,7 +97,8 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-[#1E1535] pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-[#9CA3AF] text-xs">
-            © {new Date().getFullYear()} CodeShila Technologies. All rights reserved.
+            © {new Date().getFullYear()} CodeShila Technologies. All rights
+            reserved.
           </p>
           <p className="text-[#9CA3AF] text-xs">
             Built by{" "}
@@ -112,4 +117,3 @@ export default function Footer() {
     </footer>
   );
 }
-

@@ -35,7 +35,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
-            src="/code_shila_banner.png"
+            src="/code_shila_logo_full.png"
             alt="CodeShila Technologies"
             width={180}
             height={48}
@@ -102,4 +102,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
