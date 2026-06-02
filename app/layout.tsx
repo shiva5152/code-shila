@@ -9,6 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://codeshila.vercel.app"),
   title: "CodeShila Technologies | Solutions That Scale",
   description:
     "Custom software development, web apps, mobile apps, and AI solutions. Built by Shiva Shah — software engineer with 3+ years of experience at Shiprocket.",

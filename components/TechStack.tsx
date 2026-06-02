@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Monitor, Server, Database, Cloud, Sparkles } from "lucide-react";
 
 const techCategories = [
@@ -41,7 +41,7 @@ const techCategories = [
   },
 ];
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
     opacity: 1,
