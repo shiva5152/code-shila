@@ -31,6 +31,23 @@ const contactLinks = [
   },
 ];
 
+const countryCodes = [
+  { code: "+91", flag: "🇮🇳", name: "India" },
+  { code: "+1",  flag: "🇺🇸", name: "USA" },
+  { code: "+44", flag: "🇬🇧", name: "UK" },
+  { code: "+61", flag: "🇦🇺", name: "Australia" },
+  { code: "+1",  flag: "🇨🇦", name: "Canada" },
+  { code: "+971",flag: "🇦🇪", name: "UAE" },
+  { code: "+65", flag: "🇸🇬", name: "Singapore" },
+  { code: "+49", flag: "🇩🇪", name: "Germany" },
+  { code: "+33", flag: "🇫🇷", name: "France" },
+  { code: "+31", flag: "🇳🇱", name: "Netherlands" },
+  { code: "+81", flag: "🇯🇵", name: "Japan" },
+  { code: "+55", flag: "🇧🇷", name: "Brazil" },
+  { code: "+966",flag: "🇸🇦", name: "Saudi Arabia" },
+  { code: "+27", flag: "🇿🇦", name: "South Africa" },
+];
+
 const projectTypes = [
   "Web App",
   "Mobile App",
@@ -44,7 +61,7 @@ const projectTypes = [
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
-  const [form, setForm] = useState({ name: "", email: "", project: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", countryCode: "+91", phone: "", project: "", message: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,7 +76,7 @@ export default function Contact() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong");
       setStatus("success");
-      setForm({ name: "", email: "", project: "", message: "" });
+      setForm({ name: "", email: "", countryCode: "+91", phone: "", project: "", message: "" });
       setTimeout(() => setStatus("idle"), 6000);
     } catch (err) {
       setErrorMsg(err instanceof Error ? err.message : "Failed to send. Please try again.");
@@ -163,6 +180,34 @@ export default function Contact() {
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="bg-[#07050F] border border-[#1E1535] rounded-lg px-4 py-3 text-white text-sm placeholder:text-[#9CA3AF]/50 focus:outline-none focus:border-[#7C3AED]/60 transition-colors"
+                  />
+                </div>
+              </div>
+
+              {/* Phone with country code */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[#9CA3AF] text-xs uppercase tracking-widest">
+                  Phone Number <span className="normal-case text-[#9CA3AF]/50">(optional)</span>
+                </label>
+                <div className="flex rounded-lg overflow-hidden border border-[#1E1535] focus-within:border-[#7C3AED]/60 transition-colors">
+                  <select
+                    value={form.countryCode}
+                    onChange={(e) => setForm({ ...form, countryCode: e.target.value })}
+                    className="bg-[#07050F] text-white text-sm px-3 py-3 focus:outline-none appearance-none border-r border-[#1E1535] cursor-pointer shrink-0"
+                    style={{ width: "110px" }}
+                  >
+                    {countryCodes.map((c) => (
+                      <option key={`${c.flag}-${c.code}`} value={c.code}>
+                        {c.flag} {c.code}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="tel"
+                    placeholder="98765 43210"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value.replace(/[^0-9\s\-()]/g, "") })}
+                    className="bg-[#07050F] flex-1 px-4 py-3 text-white text-sm placeholder:text-[#9CA3AF]/50 focus:outline-none"
                   />
                 </div>
               </div>

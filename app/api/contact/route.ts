@@ -12,7 +12,8 @@ function escapeHtml(str: string) {
 }
 
 export async function POST(req: NextRequest) {
-  const { name, email, project, message } = await req.json();
+  const { name, email, countryCode, phone, project, message } = await req.json();
+  const fullPhone = phone ? `${countryCode} ${phone}` : null;
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -30,6 +31,7 @@ export async function POST(req: NextRequest) {
           <table style="width: 100%; border-collapse: collapse;">
             <tr><td style="padding: 10px 0; color: #64748b; width: 120px;">Name</td><td style="padding: 10px 0; color: #0f172a; font-weight: 600;">${escapeHtml(name)}</td></tr>
             <tr><td style="padding: 10px 0; color: #64748b;">Email</td><td style="padding: 10px 0; color: #0f172a;"><a href="mailto:${escapeHtml(email)}" style="color: #0057ff;">${escapeHtml(email)}</a></td></tr>
+            ${fullPhone ? `<tr><td style="padding: 10px 0; color: #64748b;">Phone</td><td style="padding: 10px 0; color: #0f172a;">${escapeHtml(fullPhone)}</td></tr>` : ""}
             <tr><td style="padding: 10px 0; color: #64748b;">Project</td><td style="padding: 10px 0; color: #0f172a;">${escapeHtml(project || "Not specified")}</td></tr>
           </table>
           <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 24px 0;" />
