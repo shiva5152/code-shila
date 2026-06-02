@@ -23,6 +23,11 @@ export const metadata: Metadata = {
     "CodeShila",
   ],
   authors: [{ name: "Shiva Shah" }],
+  icons: {
+    icon: "/code_shila_logo_small.png",
+    apple: "/code_shila_logo_small.png",
+    shortcut: "/code_shila_logo_small.png",
+  },
   openGraph: {
     title: "CodeShila Technologies | Solutions That Scale",
     description:
