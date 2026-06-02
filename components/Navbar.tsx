@@ -39,7 +39,7 @@ export default function Navbar() {
             alt="CodeShila Technologies"
             width={160}
             height={48}
-            className="h-10 w-auto"
+            className="h-10 w-auto mix-blend-screen"
             priority
           />
         </Link>

@@ -29,7 +29,7 @@ export default function Footer() {
               alt="CodeShila Technologies"
               width={150}
               height={44}
-              className="h-10 w-auto mb-4"
+              className="h-10 w-auto mb-4 mix-blend-screen"
             />
             <p className="text-[#9CA3AF] text-sm leading-relaxed max-w-xs">
               Custom software, web apps, mobile apps &amp; AI solutions — built to scale
