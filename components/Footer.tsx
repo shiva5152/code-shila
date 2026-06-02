@@ -25,7 +25,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Image
-              src="/logo.png"
+              src="/code_shila_logo_full.png"
               alt="CodeShila Technologies"
               width={150}
               height={44}

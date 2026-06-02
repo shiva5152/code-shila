@@ -29,12 +29,14 @@ export const metadata: Metadata = {
       "Custom software, web apps, mobile apps & AI solutions — built with precision.",
     type: "website",
     locale: "en_US",
+    images: [{ url: "/code_shila_banner.png", width: 1200, height: 630, alt: "CodeShila Technologies" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "CodeShila Technologies | Solutions That Scale",
     description:
       "Custom software, web apps, mobile apps & AI solutions — built with precision.",
+    images: ["/code_shila_banner.png"],
   },
 };
 

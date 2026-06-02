@@ -35,7 +35,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
-            src="/logo.png"
+            src="/code_shila_logo_full.png"
             alt="CodeShila Technologies"
             width={160}
             height={48}
