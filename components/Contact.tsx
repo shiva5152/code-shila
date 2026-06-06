@@ -32,20 +32,20 @@ const contactLinks = [
 ];
 
 const countryCodes = [
-  { code: "+91", flag: "🇮🇳", name: "India" },
-  { code: "+1",  flag: "🇺🇸", name: "USA" },
-  { code: "+44", flag: "🇬🇧", name: "UK" },
-  { code: "+61", flag: "🇦🇺", name: "Australia" },
-  { code: "+1",  flag: "🇨🇦", name: "Canada" },
-  { code: "+971",flag: "🇦🇪", name: "UAE" },
-  { code: "+65", flag: "🇸🇬", name: "Singapore" },
-  { code: "+49", flag: "🇩🇪", name: "Germany" },
-  { code: "+33", flag: "🇫🇷", name: "France" },
-  { code: "+31", flag: "🇳🇱", name: "Netherlands" },
-  { code: "+81", flag: "🇯🇵", name: "Japan" },
-  { code: "+55", flag: "🇧🇷", name: "Brazil" },
-  { code: "+966",flag: "🇸🇦", name: "Saudi Arabia" },
-  { code: "+27", flag: "🇿🇦", name: "South Africa" },
+  { name: "India",        code: "+91",  flag: "🇮🇳", min: 10, max: 10 },
+  { name: "USA",          code: "+1",   flag: "🇺🇸", min: 10, max: 10 },
+  { name: "UK",           code: "+44",  flag: "🇬🇧", min: 10, max: 10 },
+  { name: "Australia",    code: "+61",  flag: "🇦🇺", min: 9,  max: 9  },
+  { name: "Canada",       code: "+1",   flag: "🇨🇦", min: 10, max: 10 },
+  { name: "UAE",          code: "+971", flag: "🇦🇪", min: 9,  max: 9  },
+  { name: "Singapore",    code: "+65",  flag: "🇸🇬", min: 8,  max: 8  },
+  { name: "Germany",      code: "+49",  flag: "🇩🇪", min: 10, max: 11 },
+  { name: "France",       code: "+33",  flag: "🇫🇷", min: 9,  max: 9  },
+  { name: "Netherlands",  code: "+31",  flag: "🇳🇱", min: 9,  max: 9  },
+  { name: "Japan",        code: "+81",  flag: "🇯🇵", min: 10, max: 11 },
+  { name: "Brazil",       code: "+55",  flag: "🇧🇷", min: 10, max: 11 },
+  { name: "Saudi Arabia", code: "+966", flag: "🇸🇦", min: 9,  max: 9  },
+  { name: "South Africa", code: "+27",  flag: "🇿🇦", min: 9,  max: 9  },
 ];
 
 const projectTypes = [
@@ -61,22 +61,34 @@ const projectTypes = [
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
-  const [form, setForm] = useState({ name: "", email: "", countryCode: "+91", phone: "", project: "", message: "" });
+  const [phoneTouched, setPhoneTouched] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", selectedCountry: "India", phone: "", project: "", message: "" });
+
+  const countryData = countryCodes.find((c) => c.name === form.selectedCountry) ?? countryCodes[0];
+  const phoneDigits = form.phone.replace(/\D/g, "").length;
+  const phoneIsInvalid = form.phone.length > 0 && (phoneDigits < countryData.min || phoneDigits > countryData.max);
+  const phoneHint = countryData.min === countryData.max ? `${countryData.min} digits` : `${countryData.min}–${countryData.max} digits`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Block if phone provided but invalid
+    if (form.phone && phoneIsInvalid) {
+      setPhoneTouched(true);
+      return;
+    }
     setStatus("loading");
     setErrorMsg("");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, countryCode: countryData.code }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong");
       setStatus("success");
-      setForm({ name: "", email: "", countryCode: "+91", phone: "", project: "", message: "" });
+      setPhoneTouched(false);
+      setForm({ name: "", email: "", selectedCountry: "India", phone: "", project: "", message: "" });
       setTimeout(() => setStatus("idle"), 6000);
     } catch (err) {
       setErrorMsg(err instanceof Error ? err.message : "Failed to send. Please try again.");
@@ -186,30 +198,53 @@ export default function Contact() {
 
               {/* Phone with country code */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[#9CA3AF] text-xs uppercase tracking-widest">
-                  Phone Number <span className="normal-case text-[#9CA3AF]/50">(optional)</span>
-                </label>
-                <div className="flex rounded-lg overflow-hidden border border-[#1E1535] focus-within:border-[#7C3AED]/60 transition-colors">
+                <div className="flex items-center justify-between">
+                  <label className="text-[#9CA3AF] text-xs uppercase tracking-widest">
+                    Phone Number <span className="normal-case text-[#9CA3AF]/50">(optional)</span>
+                  </label>
+                  {/* Live digit hint */}
+                  {form.phone.length > 0 && (
+                    <span className={`text-xs font-mono ${phoneIsInvalid && phoneTouched ? "text-red-400" : "text-[#9CA3AF]/60"}`}>
+                      {phoneDigits}/{phoneHint}
+                    </span>
+                  )}
+                </div>
+                <div className={`flex rounded-lg overflow-hidden border transition-colors ${
+                  phoneIsInvalid && phoneTouched
+                    ? "border-red-500/60 focus-within:border-red-500"
+                    : "border-[#1E1535] focus-within:border-[#7C3AED]/60"
+                }`}>
                   <select
-                    value={form.countryCode}
-                    onChange={(e) => setForm({ ...form, countryCode: e.target.value })}
+                    value={form.selectedCountry}
+                    onChange={(e) => setForm({ ...form, selectedCountry: e.target.value, phone: "" })}
                     className="bg-[#07050F] text-white text-sm px-3 py-3 focus:outline-none appearance-none border-r border-[#1E1535] cursor-pointer shrink-0"
                     style={{ width: "110px" }}
                   >
                     {countryCodes.map((c) => (
-                      <option key={`${c.flag}-${c.code}`} value={c.code}>
+                      <option key={c.name} value={c.name}>
                         {c.flag} {c.code}
                       </option>
                     ))}
                   </select>
                   <input
                     type="tel"
-                    placeholder="98765 43210"
+                    placeholder={`e.g. ${"0".repeat(countryData.min)}`}
                     value={form.phone}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value.replace(/[^0-9\s\-()]/g, "") })}
+                    onBlur={() => form.phone.length > 0 && setPhoneTouched(true)}
+                    onChange={(e) => {
+                      setForm({ ...form, phone: e.target.value.replace(/[^0-9\s\-()]/g, "") });
+                      if (phoneTouched) setPhoneTouched(true);
+                    }}
                     className="bg-[#07050F] flex-1 px-4 py-3 text-white text-sm placeholder:text-[#9CA3AF]/50 focus:outline-none"
                   />
                 </div>
+                {/* Error message */}
+                {phoneIsInvalid && phoneTouched && (
+                  <p className="text-red-400 text-xs flex items-center gap-1.5 mt-0.5">
+                    <AlertCircle size={12} />
+                    {countryData.name} numbers must be {phoneHint} — you entered {phoneDigits}.
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col gap-1.5">
